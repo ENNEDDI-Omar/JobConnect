@@ -10,11 +10,13 @@ class Education extends Model
     use HasFactory;
 
     protected $fillable = [
-        'School' ,
-        'Diplome',
+        'user_id',
+        'institution',
+        'degree',
+        'field_of_study',
         'start_date',
         'end_date',
-        'Description',
+        'description',
     ];
 
     public function user()

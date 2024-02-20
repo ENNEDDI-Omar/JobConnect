@@ -10,7 +10,18 @@ class Application extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'job_id',
+        'offer_id',
+        'applied_at',
         'status',
     ];
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

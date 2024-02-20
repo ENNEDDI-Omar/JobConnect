@@ -56,7 +56,7 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Experience::class);
     }
 
-    public function education()
+    public function educations()
     {
         return $this->hasMany(Education::class);
     }
@@ -69,5 +69,26 @@ class User extends Authenticatable implements HasMedia
     public function skills()
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function companyRepresented()
+    {
+        return $this->hasOne(Company::class, 'representant_id');
+    }
+
+    
+    public function companyRecruiter()
+    {
+        return $this->hasOne(Company::class, 'recruiter_id');
     }
 }

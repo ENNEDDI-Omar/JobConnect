@@ -10,15 +10,29 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
+        'recruiter_id',
+        'representant_id',
         'name',
-        'email',
-        'Industry',
-        'Location',
-        'Description',
+        'industry',
+        'capital',
+        'description',
+        'location',
+
     ];
 
-    public function testimonials(){
+    public function testimonials()
+    {
         return $this->hasMany(Testimonial::class);
+    }
+
+    public function representative()
+    {
+        return $this->belongsTo(User::class, 'representant_id');
+    }
+
+    public function recruiter()
+    {
+        return $this->belongsTo(User::class, 'recruiter_id');
     }
 
 }

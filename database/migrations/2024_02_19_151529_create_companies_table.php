@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('industry');
             $table->decimal('capital', 12, 2);
             $table->text('description');
+            $table->string('location');
             $table->softDeletes();
             $table->timestamps();
 

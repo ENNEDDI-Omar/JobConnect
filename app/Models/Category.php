@@ -11,7 +11,8 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
-    public function Offres(){
-        return $this->hasMany(Offre::class);
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }
