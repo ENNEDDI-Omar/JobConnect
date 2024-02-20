@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class EducationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'institution' => $this->faker->company,
+            'degree' => $this->faker->word,
+            'field_of_study' => $this->faker->word,
+            'start_date' => $this->faker->dateTimeBetween('-5 years', 'now'),
+            'end_date' => $this->faker->dateTimeBetween('now', '+5 years'),
+            'description' => $this->faker->paragraph,
         ];
     }
 }

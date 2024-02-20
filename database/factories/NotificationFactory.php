@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class NotificationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            //'id' => (string) \Illuminate\Support\Str::uuid(),
+            'type' => 'App\Notifications\ExampleNotification',
+            'notifiable_type' => User::class,
+            'notifiable_id' => User::factory(),
+            'data' => ['message' => $this->faker->sentence],
+            'read_at' => null,
         ];
     }
 }

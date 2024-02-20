@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class OfferFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'category_id' => Category::factory(),
+            'title' => $this->faker->jobTitle,
+            'description' => $this->faker->paragraph,
+            'location' => $this->faker->address,
+            'salary' => $this->faker->randomNumber(5),
+            'contract_type' => $this->faker->randomElement(['full-time', 'part-time', 'contract']),
+            'experience' => $this->faker->randomElement(['entry-level', 'mid-level', 'senior']),
         ];
     }
 }

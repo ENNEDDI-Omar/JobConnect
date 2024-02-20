@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
-            $table->string('titel');
+            $table->string('title');
             $table->text('description');
             $table->string('location');
             $table->string('salary')->nullable();

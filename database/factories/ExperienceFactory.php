@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class ExperienceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'title' => $this->faker->jobTitle,
+            'type' => $this->faker->randomElement(['full-time', 'part-time', 'internship']),
+            'company' => $this->faker->company,
+            'start_date' => $this->faker->dateTimeBetween('-10 years', 'now'),
+            'end_date' => $this->faker->dateTimeBetween('now', '+1 year'),
+            'description' => $this->faker->paragraph,
         ];
     }
 }

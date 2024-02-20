@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Offer;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,10 @@ class ApplicationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'offer_id' => Offer::factory(),
+            'applied_at' => Carbon::now(),
+            'status' => $this->faker->randomElement(['pending', 'accepted', 'rejected']),
         ];
     }
 }
