@@ -11,6 +11,7 @@ class Testimonial extends Model
     protected $fillable = [
         'Author',
         'message',
+        'company_id'
     ];
 
     public function Company(){

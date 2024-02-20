@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class TestimonialFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'author' => $this->faker->name,
+            'message' => $this->faker->paragraph,
+            'company_id' => Company::factory(),
         ];
     }
 }
