@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Recruiter
+class Admin
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class Recruiter
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && Auth::user()->role->name === 'recruiter') 
-        {
-            return $next($request);  
+        if (Auth::check() && Auth::user()->role->name === 'admin') {
+            return $next($request);
         }
-         return redirect()->route('home')->with('error', 'Access Only for Recruiters');
+        
+        return redirect()->route('home')->with('error', 'Accès autorisé seulment à l Admin');
     }
 }
