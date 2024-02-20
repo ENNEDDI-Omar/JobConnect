@@ -4,13 +4,16 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +24,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'description',
+        'phone',
     ];
+
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,4 +49,46 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function educations()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function companyRepresented()
+    {
+        return $this->hasOne(Company::class, 'representant_id');
+    }
+
+    
+    public function companyRecruiter()
+    {
+        return $this->hasOne(Company::class, 'recruiter_id');
+    }
 }
