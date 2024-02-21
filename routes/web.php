@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.profile');
 });
 
 Route::get('/dashboard', function () {
@@ -47,3 +47,10 @@ Route::middleware('representant')->group(function () {
 
 
 require __DIR__.'/auth.php';
+
+Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::resource('', 'UserController');
+
+});
