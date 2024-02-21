@@ -27,6 +27,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+////////////////////////////Création des Middleware pour chaque Role//////////////////
+
+Route::middleware('admin')->group(function () {
+    
+});
+
+Route::middleware('user')->group(function () {
+    
+});
+
+Route::middleware('recruiter')->group(function () {
+    
+});
+
+Route::middleware('representant')->group(function () {
+    
+});
+
 
 require __DIR__.'/auth.php';
 
