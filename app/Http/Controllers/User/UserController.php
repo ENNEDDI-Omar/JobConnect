@@ -16,8 +16,9 @@ class UserController extends Controller
         $user= Auth::user();
         $skills = $user->skills;
         $educations = $user->educations;
-        //dd($educations);
-        return view('user.profile', compact('skills', 'educations'));
+        $experiences = $user->experiences;
+        //dd($experiences);
+        return view('user.profile', compact('skills', 'educations', 'experiences'));
 
     }
 

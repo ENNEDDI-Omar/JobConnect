@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" referrerpolicy="no-referrer" />
     <script src="https://cdn.tailwindcss.com"></script> --}}
     @vite('resources/css/app.css')
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
 
 <body>
@@ -120,17 +121,79 @@
                                         class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
                                         @foreach ($educations as $education)
                                             <div
-                                            class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
-                                            <h3 class="text-xl font-semibold tracki">{{ $education->degree }}</h3>
-                                            <h3 class="text-xl font-semibold tracki">{{ $education->institution }}</h3>
-                                            <time class="text-xs tracki uppercase text-gray-400">{{ $education->start_date }} - {{ $education->end_date ? $education->end_date : 'Present' }}</time>
-                                            <p class="mt-3">{{ $education->description }}</p>
-                                        </div>
+                                                class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
+                                                <h3 class="text-xl font-semibold tracki">{{ $education->degree }}</h3>
+                                                <h3 class="text-xl font-semibold tracki">{{ $education->institution }}
+                                                </h3>
+                                                <time
+                                                    class="text-xs tracki uppercase text-gray-400">{{ $education->start_date }}
+                                                    -
+                                                    {{ $education->end_date ? $education->end_date : 'Present' }}</time>
+                                                <p class="mt-3">{{ $education->description }}</p>
+                                            </div>
                                         @endforeach
 
 
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="container max-w-5xl px-4 py-12 mx-auto">
+                            <div class="grid gap-4 mx-4 sm:grid-cols-12">
+                                <div class="col-span-12 sm:col-span-3">
+                                    <div
+                                        class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
+                                        <h3 class="text-3xl font-semibold">Experiences</h3>
+                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam
+                                            nunc</span>
+                                    </div>
+                                </div>
+                                <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
+                                    <div
+                                        class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
+                                        <div class="flex items-center justify-end">
+                                            <button id="createExperienceButton" >
+                                                <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop" class="w-10 h-10"></lord-icon>
+                                            </button>
+                                        </div>
+                                        @foreach ($experiences as $experience)
+                                            <div
+                                                class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
+                                                <div class="flex items-center justify-between mt-3">
+                                                    <h3 class="text-xl font-semibold tracki">{{ $experience->title }}</h3>
+                                                    <div class="flex items-center space-x-2">
+                                                        <form action="" method="post">
+                                                            <button type="submit">
+                                                                <lord-icon src="https://cdn.lordicon.com/skkahier.json"
+                                                                    trigger="" style="width:25px;height:25px">
+                                                                </lord-icon>
+                                                            </button>
+                                                        </form>
+                                                        <a href="">
+                                                            <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json"
+                                                                colors="primary:#FFF,secondary:#000000,tertiary:#8B5CF6,quaternary:#8B5CF6"
+                                                                trigger="" style="width:25px;height:25px">
+                                                            </lord-icon>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <h3 class="text-xl font-semibold tracki">{{ $experience->company }}
+                                                </h3>
+                                                <time
+                                                    class="text-xs tracki uppercase text-gray-400">{{ $experience->start_date }}
+                                                    -
+                                                    {{ $experience->end_date ? $experience->end_date : 'Present' }}</time>
+                                                <p class="mt-3">{{ $experience->description }}</p>
+                                            </div>
+                                        @endforeach
+
+
+
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </div>
                     </section>
@@ -155,8 +218,51 @@
             </footer>
         </section>
     </main>
-    {{-- education --}}
 
+
+
+    {{-- modals --}}
+    <div id="createExperienceModal" class="fixed inset-0 flex items-center justify-center hidden">
+        <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
+        <div class="bg-white p-8 rounded-lg z-10">
+            <span id="closeModal" class="absolute top-0 right-0 mt-4 mr-4 cursor-pointer">&times;</span>
+            <form id="experienceForm" class="space-y-4">
+                <input type="text" name="title" placeholder="Title" class="block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <textarea name="description" placeholder="Description" rows="3" class="block w-full border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Experience</button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <script>
+        var modal = document.getElementById("createExperienceModal");
+        var btn = document.getElementById("createExperienceButton");
+
+        var span = document.getElementById("closeModal");
+
+        btn.onclick = function() {
+            modal.classList.remove("hidden");
+        }
+
+        span.onclick = function() {
+            modal.classList.add("hidden");
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.add("hidden");
+            }
+        }
+
+        var form = document.getElementById("experienceForm");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            modal.classList.add("hidden");
+            form.reset();
+        });
+    </script>
 
 
 </body>
