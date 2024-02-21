@@ -16,7 +16,7 @@ class Recruiter
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && Auth::user()->role->name === 'recruiter') 
+        if (Auth::user() && Auth::user()->is_recruiter) 
         {
             return $next($request);  
         }

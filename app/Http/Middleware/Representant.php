@@ -16,7 +16,7 @@ class Representant
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && Auth::user()->role->name === 'representant') 
+        if (Auth::user() && Auth::user()->is_representant) 
         {
             return $next($request);
         }

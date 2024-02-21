@@ -3,7 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -51,43 +57,82 @@ class User extends Authenticatable implements HasMedia
     ];
 
 
-    public function experiences()
+    public function experiences(): HasMany
     {
         return $this->hasMany(Experience::class);
     }
 
-    public function educations()
+    public function educations(): HasMany
     {
         return $this->hasMany(Education::class);
     }
 
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
+    /////////configuration des roles////
+    protected function getIsAdminAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->role->name === 'Admin',
+        );
+    }
 
-    public function skills()
+    /**
+     * Accessor for isUser.
+     */
+    protected function getIsUserAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->role->name === 'User',
+        );
+    }
+
+    /**
+     * Accessor for isRecruiter.
+     */
+    protected function getIsRecruiterAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->role->name === 'Recruiter',
+        );
+    }
+
+    /**
+     * Accessor for isRepresentant.
+     */
+    protected function getIsRepresentantAttribute(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->role->name === 'Representant',
+        );
+    }
+
+    
+
+    public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
     }
 
-    public function applications()
+    public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
     }
 
-    public function offers()
+    public function offers(): HasMany
     {
         return $this->hasMany(Offer::class);
     }
 
-    public function companyRepresented()
+    public function companyRepresented(): HasOne
     {
         return $this->hasOne(Company::class, 'representant_id');
     }
 
     
-    public function companyRecruiter()
+    public function companyRecruiter(): HasOne
     {
         return $this->hasOne(Company::class, 'recruiter_id');
     }
