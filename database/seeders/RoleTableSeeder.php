@@ -17,13 +17,13 @@ class RoleTableSeeder extends Seeder
                 'name' => 'Admin',
             ],
             [
-                'name' => 'Representant',
+                'name' => 'User',
             ],
             [
                 'name' => 'Recruiter',
             ],
             [
-                'name' => 'User',
+                'name' => 'Representant',
             ]
         ];
 

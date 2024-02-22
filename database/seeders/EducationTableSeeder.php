@@ -13,6 +13,6 @@ class EducationTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Education::factory()->count(10)->create();
+        Education::factory()->count(5)->create();
     }
 }
