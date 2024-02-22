@@ -18,7 +18,7 @@ class UserController extends Controller
         $educations = $user->educations;
         $experiences = $user->experiences;
         //dd($experiences);
-        return view('user.profile', compact('skills', 'educations', 'experiences'));
+        return view('user.profile', compact('skills', 'educations', 'experiences','user'));
 
     }
 
