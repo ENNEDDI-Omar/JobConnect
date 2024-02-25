@@ -3,7 +3,6 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Recruiter\OfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +41,7 @@ Route::middleware('user')->group(function () {
 });
 
 Route::middleware('recruiter')->group(function () {
-    Route::resource('offers', OfferController::class);
+    
 });
 
 Route::middleware('representant')->group(function () {
