@@ -10,6 +10,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Offer extends Model implements HasMedia
 {
+
+    
     use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
