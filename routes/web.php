@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Recruiter\OfferController;
@@ -17,7 +18,10 @@ use App\Http\Controllers\Recruiter\OfferController;
 
 Route::get('/', function () {
     return view('welcome');
+    return view('welcome');
 });
+Route::get('home',[HomeController::class,'index']);
+Route::get('community',[HomeController::class,'displayCommunity']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,6 +56,9 @@ require __DIR__.'/auth.php';
 // Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
 //     Route::get('/', 'HomeController@index')->name('home');
 
-//     Route::resource('', 'UserController');
+    Route::resource('', 'UserController');
+    Route::resource('experiences','ExperienceController');
+    Route::resource('educations','EducationController');
+    Route::resource('offers','OfferController');
 
 // });

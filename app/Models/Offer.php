@@ -38,6 +38,9 @@ class Offer extends Model implements HasMedia
     {
         return $this->hasMany(Application::class);
     }
+    public function skills(){
+        return $this->belongsToMany(Skill::class);
+    }
 
 
 }
