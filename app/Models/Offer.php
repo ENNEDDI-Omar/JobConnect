@@ -35,4 +35,6 @@ class Offer extends Model
     {
         return $this->hasMany(Application::class);
     }
+
+    
 }
