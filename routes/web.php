@@ -18,7 +18,6 @@ use App\Http\Controllers\Recruiter\OfferController;
 
 Route::get('/', function () {
     return view('welcome');
-    return view('welcome');
 });
 Route::get('home',[HomeController::class,'index']);
 Route::get('community',[HomeController::class,'displayCommunity']);
