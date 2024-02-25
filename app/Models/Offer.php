@@ -23,6 +23,10 @@ class Offer extends Model implements HasMedia
         'experience',
     ];
 
+    public function skills(){
+        return $this->belongsToMany(Skill::class);
+    }
+
 
     public function user()
     {
@@ -37,9 +41,6 @@ class Offer extends Model implements HasMedia
     public function applications()
     {
         return $this->hasMany(Application::class);
-    }
-    public function skills(){
-        return $this->belongsToMany(Skill::class);
     }
 
 
