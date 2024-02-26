@@ -19,7 +19,7 @@ class DashController extends Controller
         $users=User::all();
         $companies = Company::all();
 
-        return view('Admin.index', compact('companies', 'users'));
+        return view('Admin.dashboard', compact('companies', 'users'));
     }
 
 
