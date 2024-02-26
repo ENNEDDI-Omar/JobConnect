@@ -35,4 +35,13 @@ class Company extends Model
         return $this->belongsTo(User::class, 'recruiter_id');
     }
 
+    public function hasRepresentative()
+    {
+        return !is_null($this->representative);
+    }
+
+    public function hasRecruiter()
+    {
+        return !is_null($this->recruiter);
+    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.profile');
+    return view('welcome');
 });
+Route::get('home',[HomeController::class,'index']);
+Route::get('community',[HomeController::class,'displayCommunity']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -52,5 +56,22 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Cont
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::resource('', 'UserController');
+    Route::resource('experiences','ExperienceController');
+    Route::resource('educations','EducationController');
+    Route::resource('offers','OfferController');
 
 });
+
+
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
+
+    Route::resource('dashboard', 'DashController'); 
+    Route::get('dashboard', [DashController::class,'allStatistics']); 
+    Route::resource('company', 'CompanyController'); 
+
+
+
+});
+Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
