@@ -71,8 +71,11 @@ require __DIR__.'/auth.php';
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
 
+    Route::resource('dash', 'DashController'); 
+
     //Route::resource('dashboard', 'DashController'); 
     Route::get('dashboard', [DashController::class,'allStatistics'])->name('dashboard.index'); 
+
     Route::resource('company', 'CompanyController'); 
 
 
@@ -93,7 +96,9 @@ Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' =
 
 Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
     
+    Route::resource('dashboard','OfferController');
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
+    
 
 });
