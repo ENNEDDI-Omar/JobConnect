@@ -28,27 +28,19 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        $user=Auth::user();
-        if ($user->is_admin) 
-        {
-            return redirect()->route('admin');
-        }elseif ($user->is_user) 
-        {
-            return redirect()->route('user');
-        }
-         elseif ($user->is_recruiter) 
-        {
+        $user = Auth::user();
+        if ($user->is_admin) {
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->is_user) {
+            return redirect()->route('user.user.index');
+        } elseif ($user->is_recruiter) {
             return redirect()->route('recruiter');
-        } elseif ($user->is_representant) 
-        {
+        } elseif ($user->is_representant) {
             return redirect()->route('representant');
-        } else 
-        {
-            // Redirection par défaut pour d'autres rôles
+        } else {
+            // Redirect to a default route if the user's role is not recognized
             return redirect(RouteServiceProvider::HOME);
         }
-
-        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
