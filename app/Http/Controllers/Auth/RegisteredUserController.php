@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $defaultRole = Role::where('name', 'User')->first();
+        $defaultRole = Role::where('name', 'Recruiter')->first();
 
         $user = User::create([
             'name' => $request->name,
@@ -52,16 +52,16 @@ class RegisteredUserController extends Controller
 
         switch ($user->role->name) {
             case 'Admin':
-                return redirect()->route('admin');
+                return redirect()->route('admin.dash.index');
                 break;
             case 'User':
-                return redirect()->route('offers.index');
+                return redirect()->route('user.user.index');
                 break;
             case 'Recruiter':
-                return redirect()->route('recruiter');
+                return redirect()->route('recruiter.dashRec.index');
                 break;
             case 'Representant':
-                return redirect()->route('recruiter');
+                return redirect()->route('representant.offers.index');
                 break;
         }
     }
