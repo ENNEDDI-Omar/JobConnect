@@ -94,5 +94,6 @@ Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App
     
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
+    
 
 });
