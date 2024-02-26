@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +72,10 @@ require __DIR__.'/auth.php';
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
 
     Route::resource('dash', 'DashController'); 
-    Route::get('dashboard', [DashController::class,'allStatistics']); 
+
+    //Route::resource('dashboard', 'DashController'); 
+    Route::get('dashboard', [DashController::class,'allStatistics'])->name('dashboard.index'); 
+
     Route::resource('company', 'CompanyController'); 
 
 
