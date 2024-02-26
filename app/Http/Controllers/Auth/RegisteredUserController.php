@@ -32,18 +32,20 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:50', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['nullable', 'string', 'max:20'],
         ]);
 
-        $defaultRole = Role::where('name', 'Recruiter')->first();
+        $defaultRole = Role::where('name', 'User')->first();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_id' => $defaultRole->id, // Spécifiez le rôle lors de la création
+            'phone' => $request->phone,
         ]);
 
         event(new Registered($user));
@@ -52,16 +54,16 @@ class RegisteredUserController extends Controller
 
         switch ($user->role->name) {
             case 'Admin':
-                return redirect()->route('admin.dash.index');
+                return redirect()->route('admin.dashboard.index');
                 break;
             case 'User':
-                return redirect()->route('user.user.index');
+                return redirect()->route('user.dashboard.index');
                 break;
             case 'Recruiter':
-                return redirect()->route('recruiter.dashRec.index');
+                return redirect()->route('recruiter.dashboard.index');
                 break;
             case 'Representant':
-                return redirect()->route('representant.offers.index');
+                return redirect()->route('representant.dashboard.index');
                 break;
         }
     }

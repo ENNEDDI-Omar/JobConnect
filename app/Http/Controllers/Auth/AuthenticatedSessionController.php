@@ -32,11 +32,11 @@ class AuthenticatedSessionController extends Controller
         if ($user->is_admin) {
             return redirect()->route('admin.dashboard.index');
         } elseif ($user->is_user) {
-            return redirect()->route('user.user.index');
+            return redirect()->route('user.dashboard.index');
         } elseif ($user->is_recruiter) {
-            return redirect()->route('recruiter');
+            return redirect()->route('recruiter.dashboard.index');
         } elseif ($user->is_representant) {
-            return redirect()->route('representant');
+            return redirect()->route('representant.dashboard.index');
         } else {
             // Redirect to a default route if the user's role is not recognized
             return redirect(RouteServiceProvider::HOME);

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Recruiter;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashRecruiterController extends Controller
+class DashAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('Recruiter.index');
+        return view('Admin.index');
     }
 
     /**
