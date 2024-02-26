@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Company extends Model
+class Company extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes, InteractsWithMedia;
 
     protected $fillable = [
         'recruiter_id',
@@ -35,4 +38,13 @@ class Company extends Model
         return $this->belongsTo(User::class, 'recruiter_id');
     }
 
+    public function hasRepresentative()
+    {
+        return !is_null($this->representative);
+    }
+
+    public function hasRecruiter()
+    {
+        return !is_null($this->recruiter);
+    }
 }

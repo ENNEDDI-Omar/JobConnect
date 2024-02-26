@@ -21,18 +21,19 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RoleTableSeeder::class,
-            ApplicationTableSeeder::class,
-            CategoryTableSeeder::class,
+            PermissionTableSeeder::class,
+            PermissionRoleTableSeeder::class,
+            SkillTableSeeder::class,
+            UserTableSeeder::class,
             CompanyTableSeeder::class,
+            SkillUserTableSeeder::class,
+            CategoryTableSeeder::class,
+            OfferTableSeeder::class,
+            ApplicationTableSeeder::class,
+            TestimonialTableSeeder::class,
             EducationTableSeeder::class,
             ExperienceTableSeeder::class,
-            OfferTableSeeder::class,
-            PermissionTableSeeder::class,
-            SkillTableSeeder::class,
-            TestimonialTableSeeder::class,
-            UserTableSeeder::class,
-            SkillUserTableSeeder::class,
-            PermissionRoleTableSeeder::class,
+            
         ]);
     }
 }

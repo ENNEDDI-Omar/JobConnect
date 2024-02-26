@@ -13,6 +13,6 @@ class SkillTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Skill::factory()->count(10)->create();
+        Skill::factory()->count(5)->create();
     }
 }

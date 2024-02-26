@@ -33,23 +33,36 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        $defaultRole = Role::where('name', 'User')->first();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role_id' => $defaultRole->id, // Spécifiez le rôle lors de la création
         ]);
-        
-        $userRole = Role::where('name', 'User')->first();
-        $user->role()->associate($userRole);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        switch ($user->role->name) {
+            case 'Admin':
+                return redirect()->route('admin');
+                break;
+            case 'User':
+                return redirect()->route('offers.index');
+                break;
+            case 'Recruiter':
+                return redirect()->route('recruiter');
+                break;
+            case 'Representant':
+                return redirect()->route('recruiter');
+                break;
+        }
     }
 }
