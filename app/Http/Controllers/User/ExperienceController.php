@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ExperienceStoreRequest;
+use App\Models\Experience;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
@@ -26,9 +28,12 @@ class ExperienceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ExperienceStoreRequest $request)
     {
-        //
+      /*   $user = auth()->user();
+        $experience = Experience::create($request->all() + ['user_id' => $user->id]);
+        return redirect()->route('user.index')->with('success', 'Experience added successfully!'); */
+        echo ('poihugyt');
     }
 
     /**

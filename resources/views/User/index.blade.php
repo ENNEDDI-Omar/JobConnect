@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <x-app-layout>
     <h1>User->index</h1>
     <!doctype html>
@@ -508,3 +509,6 @@
 
     </html>
 </x-app-layout>
+=======
+@extends('layouts.Index')
+>>>>>>> 14ceaee7d933aff53aa3b114b03f32ada6a92278
