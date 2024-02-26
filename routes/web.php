@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -42,3 +43,17 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Cont
     Route::resource('offers','OfferController');
 
 });
+
+
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
+
+    Route::resource('dashboard', 'DashController'); 
+    Route::get('dashboard', [DashController::class,'allStatistics']); 
+    Route::resource('company', 'CompanyController'); 
+
+
+
+});
+Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
