@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1>Representant->index</h1>
+    <h1>Admin->index</h1>
     <!doctype html>
     <html lang="en">
 

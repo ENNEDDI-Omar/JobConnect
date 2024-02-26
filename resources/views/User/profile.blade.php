@@ -102,6 +102,19 @@
                                 <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
                                     <div
                                         class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
+<<<<<<< HEAD
+                                        {{-- @foreach ($educations as $education)
+                                            <div
+                                            class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
+                                            <h3 class="text-xl font-semibold tracki">{{ $education->degree }}</h3>
+                                            <h3 class="text-xl font-semibold tracki">{{ $education->institution }}</h3>
+                                            <time class="text-xs tracki uppercase text-gray-400">{{ $education->start_date }} - {{ $education->end_date ? $education->end_date : 'Present' }}</time>
+                                            <p class="mt-3">{{ $education->description }}</p>
+                                        </div>
+                                        @endforeach --}}
+
+
+=======
                                         <div class="flex items-center justify-end">
                                             <button onclick="openModal('addExperienceModal')" class="btn">
                                                 <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop"
@@ -205,6 +218,7 @@
                                                 <p class="mt-3">{{ $experience->description }}</p>
                                             </div>
                                         @endforeach
+>>>>>>> 14ceaee7d933aff53aa3b114b03f32ada6a92278
                                     </div>
                                 </div>
                             </div>

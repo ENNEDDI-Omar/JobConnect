@@ -13,7 +13,7 @@ class ExperienceTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Experience::factory()->count(10)->create();
+        Experience::factory()->count(5)->create();
 
     }
 }

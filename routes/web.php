@@ -1,7 +1,10 @@
 <?php
 
+
+
 use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,27 +36,27 @@ Route::middleware('auth')->group(function () {
 });
 ////////////////////////////Création des Middleware pour chaque Role//////////////////
 
-Route::middleware('admin')->group(function () {
-    
-});
+// Route::middleware(['auth', 'admin'])->group(function () {
+//     Route::resource('k', OfferController::class);
+// });
 
-Route::middleware('user')->group(function () {
-    
-});
 
-Route::middleware('recruiter')->group(function () {
-    
-});
 
-Route::middleware('representant')->group(function () {
-    
-});
+// Route::middleware(['auth', 'recruiter'])->group(function () {
+//     Route::resource('offers', OfferController::class);
+// });
+
+// Route::middleware(['auth', 'representant'])->group(function () {
+//     Route::resource('jobs', OfferController::class);
+// });
+
 
 
 require __DIR__.'/auth.php';
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
+     Route::get('/', 'HomeController@index')->name('home');
+
 
     Route::resource('', 'UserController');
     Route::resource('experiences','ExperienceController');
@@ -75,3 +78,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
 });
 Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
+
+
+
+
+Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
+    
+    Route::resource('offers','OfferController');
+    Route::resource('company', 'CompanyController');
+
+});
+
+
+Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
+    
+    Route::resource('offers','OfferController');
+    Route::resource('company', 'CompanyController');
+
+});

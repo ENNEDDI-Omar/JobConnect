@@ -13,6 +13,6 @@ class ApplicationTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Application::factory()->count(10)->create();
+        Application::factory()->count(5)->create();
     }
 }

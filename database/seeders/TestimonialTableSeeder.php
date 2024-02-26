@@ -13,6 +13,6 @@ class TestimonialTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Testimonial::factory()->count(10)->create();
+        Testimonial::factory()->count(5)->create();
     }
 }
