@@ -8,6 +8,7 @@ use App\Http\Requests\OfferUpdateRequest;
 use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
@@ -15,9 +16,11 @@ class OfferController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        $user = Auth::user();
+        $myOffers = $user->offers;
         $offers = Offer::all();
-        return view('Recruiter.index', compact('offers'));
+        return view('Recruiter.index', compact('offers', 'myOffers'));
     }
 
     /**

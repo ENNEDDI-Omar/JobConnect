@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\OfferController as AdminOfferController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Recruiter\OfferController;
+use App\Http\Controllers\Representant\OfferController as RepresentantOfferController;
+use App\Http\Controllers\User\OfferController as UserOfferController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,21 +33,22 @@ Route::middleware('auth')->group(function () {
 });
 ////////////////////////////Création des Middleware pour chaque Role//////////////////
 
-Route::middleware('admin')->group(function () {
-    
-});
+// Route::middleware(['auth', 'admin'])->group(function () {
+//     Route::resource('k', OfferController::class);
+// });
 
-Route::middleware('user')->group(function () {
-    
-});
-
-Route::middleware('recruiter')->group(function () {
+Route::middleware(['auth', 'user'])->group(function () {
     Route::resource('offers', OfferController::class);
 });
 
-Route::middleware('representant')->group(function () {
-    
-});
+// Route::middleware(['auth', 'recruiter'])->group(function () {
+//     Route::resource('offers', OfferController::class);
+// });
+
+// Route::middleware(['auth', 'representant'])->group(function () {
+//     Route::resource('jobs', OfferController::class);
+// });
+
 
 
 require __DIR__.'/auth.php';

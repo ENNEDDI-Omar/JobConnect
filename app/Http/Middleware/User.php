@@ -20,6 +20,6 @@ class User
         {
             return $next($request); 
         }
-        return redirect()->route('home')->with('error', 'Access Only for Users');
+        return redirect()->route('dashboard')->with('error', 'Access Only for Users');
     }
 }

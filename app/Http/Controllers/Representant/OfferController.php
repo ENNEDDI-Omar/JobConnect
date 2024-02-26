@@ -12,7 +12,7 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+        return view('Representant.index');
     }
 
     /**

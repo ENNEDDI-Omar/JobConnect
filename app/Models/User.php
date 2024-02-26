@@ -30,8 +30,10 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
+        'role_id',
         'description',
         'phone',
+    
     ];
 
 
@@ -71,6 +73,8 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Role::class);
     }
+
+
     /////////configuration des roles////
     protected function getIsAdminAttribute(): Attribute
     {
