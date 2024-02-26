@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-////////////////////////////Création des Middleware pour chaque Role//////////////////
+////////////////////////////CrÃ©ation des Middleware pour chaque Role//////////////////
 
 // Route::middleware(['auth', 'admin'])->group(function () {
 //     Route::resource('k', OfferController::class);
