@@ -58,7 +58,7 @@ require __DIR__.'/auth.php';
      Route::get('/', 'HomeController@index')->name('home');
 
 
-    Route::resource('', 'UserController');
+    Route::resource('user', 'UserController');
     Route::resource('experiences','ExperienceController');
     Route::resource('educations','EducationController');
     Route::resource('offers','OfferController');
@@ -70,7 +70,7 @@ require __DIR__.'/auth.php';
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
 
-    Route::resource('dashboard', 'DashController'); 
+    Route::resource('dash', 'DashController'); 
     Route::get('dashboard', [DashController::class,'allStatistics']); 
     Route::resource('company', 'CompanyController'); 
 
@@ -92,6 +92,7 @@ Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' =
 
 Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
     
+    Route::resource('dashboard','OfferController');
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
     
