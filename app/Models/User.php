@@ -76,41 +76,34 @@ class User extends Authenticatable implements HasMedia
 
 
     /////////configuration des roles////
-    protected function getIsAdminAttribute(): Attribute
+    protected function getIsAdminAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->role->name === 'Admin',
-        );
+        return $this->role && $this->role->name === 'Admin';
     }
+    
 
     /**
      * Accessor for isUser.
      */
-    protected function getIsUserAttribute(): Attribute
+    protected function getIsUserAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->role->name === 'User',
-        );
+        return $this->role && $this->role->name === 'User';
     }
 
     /**
      * Accessor for isRecruiter.
      */
-    protected function getIsRecruiterAttribute(): Attribute
+    protected function getIsRecruiterAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->role->name === 'Recruiter',
-        );
+        return $this->role && $this->role->name === 'Recruiter';
     }
 
     /**
      * Accessor for isRepresentant.
      */
-    protected function getIsRepresentantAttribute(): Attribute
+    protected function getIsRepresentantAttribute()
     {
-        return Attribute::make(
-            get: fn () => $this->role->name === 'Representant',
-        );
+        return $this->role && $this->role->name === 'Representant';
     }
 
     
@@ -125,7 +118,7 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Application::class);
     }
 
-    public function offers(): HasMany
+    public function offers()
     {
         return $this->hasMany(Offer::class);
     }

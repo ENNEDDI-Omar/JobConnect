@@ -4,10 +4,8 @@
 
 use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +21,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('home',[HomeController::class,'index']);
-Route::get('community',[HomeController::class,'displayCommunity']);
+// Route::get('home',[HomeController::class,'index']);
+// Route::get('community',[HomeController::class,'displayCommunity']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,6 +53,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
  Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
      Route::get('/', 'HomeController@index')->name('home');
 
@@ -71,21 +70,26 @@ require __DIR__.'/auth.php';
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
-
+    Route::resource('dashboard', 'DashAdminController');
     Route::resource('dash', 'DashController'); 
 
     //Route::resource('dashboard', 'DashController'); 
-    Route::get('dashboard', [DashController::class,'allStatistics'])->name('dashboard.index'); 
+    Route::get('stastics', [DashController::class,'allStatistics']); 
 
     Route::resource('company', 'CompanyController'); 
 
+});
 
+
+
+Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Recruiter', 'middleware' => ['auth', 'recruiter']], function () {
+    
+    Route::resource('dashboard','DashRecruiterController');
+    Route::resource('offers','OfferController');
+    Route::resource('company', 'CompanyController');
+    
 
 });
-Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
-
-
-
 
 Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
     
@@ -94,11 +98,11 @@ Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' =
 
 });
 
+Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
 
-Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
-    Route::resource('dashboard','OfferController');
-    Route::resource('offers','OfferController');
-    Route::resource('company', 'CompanyController');
-    
 
-});
+
+
+
+
+

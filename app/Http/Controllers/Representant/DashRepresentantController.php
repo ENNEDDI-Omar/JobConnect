@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Recruiter;
+namespace App\Http\Controllers\Representant;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class DashRecruiterController extends Controller
+class DashRepresentantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {   
-        $user = Auth::user();
-        $myOffers = $user->offers()->with('category')->get();
-                    
-        return view('Recruiter.index', compact( 'myOffers'));
+    {
+        return view('Representant.index');
     }
 
     /**

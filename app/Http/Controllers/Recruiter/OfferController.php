@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferStoreRequest;
 use App\Http\Requests\OfferUpdateRequest;
+use App\Models\Category;
 use App\Models\Offer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,20 +16,15 @@ class OfferController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {   
-        $user = Auth::user();
-        $myOffers = $user->offers;
-        $offers = Offer::all();
-        return view('Recruiter.index', compact('offers', 'myOffers'));
-    }
+    
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('Recruiter.create');
+        $categories = Category::all();
+        return view('Recruiter.offer.create', compact('categories'));
     }
 
     /**
@@ -39,7 +35,7 @@ class OfferController extends Controller
         $offers = Offer::create($request->validated());
         $offers->addMediaFromRequest('picture')->toMediaCollection('offers');
 
-        return redirect()->route('offers.index')->with('success', 'Job Offer added succefuly!');
+        return redirect()->route('recruiter.dashboard.index')->with('success', 'Job Offer added succefuly!');
 
     }
 
@@ -48,16 +44,16 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        return view('Recruiter.index', compact('offer'));
+        return view('Recruiter.offer.show', compact('offer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Offer $id)
+    public function edit(Offer $offer)
     {
-        $offer=Offer::findOrFail($id);
-        return view('Recruiter.index', compact('offer'));
+        $categories = Category::all();
+        return view('Recruiter.offer.edit', compact('offer', 'categories'));
     }
 
     /**
@@ -72,7 +68,7 @@ class OfferController extends Controller
             $offer->addMediaFromRequest('picture')->toMediaCollection('offers');
           }
           
-        return redirect()->route('offers.index')->with('success', 'Offer updated succfully');
+        return redirect()->route('recruiter.dashboard.index')->with('success', 'Offer updated succfully');
 
     }
 
@@ -82,6 +78,6 @@ class OfferController extends Controller
     public function destroy(Offer $offer)
     {
         $offer->delete();
-        return redirect()->route('offers.index')->with('success', 'Offer deleted succfully!');
+        return redirect()->route('recruiter.dashboard.index')->with('success', 'Offer deleted succfully!');
     }
 }
