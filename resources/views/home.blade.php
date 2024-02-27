@@ -47,6 +47,21 @@
                         </li>
                     </ul>
                 </div>
+                @if (!$offer->applications->contains('user_id', auth()->user()->id))
+                    {{-- <form action="{{ route('user.applications.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name='offer_id' value="{{$offer->id}}">
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Apply</button>
+                    </form> --}}
+
+                    <button class="applyButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-target-modal="uploadModal" data-offer-id="{{ $offer->id }}">
+                        Apply
+                    </button>
+                    
+                @else
+                <p class="bg-white text-green-500 px-4 py-2 rounded " >You've Already Applied</p>
+
+                @endif
             </div>
         </article>
         
@@ -93,4 +108,73 @@
     </div>
 </div>
 @endforeach
+
+
+
+
+<div id="uploadModalBackdrop" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 z-50 hidden"></div>
+
+<div id="uploadModal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-md shadow-md z-50 hidden">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold">Upload Resume and Cover Letter</h2>
+        <button id="closeModalButton" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+    </div>
+    <form id="uploadForm" method="post" action="{{ route('user.applications.store') }}" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" id="offerIdInput" name="offer_id" value=""> 
+        <div class="mb-4">
+            <label for="resume" class="block text-sm font-medium text-gray-700">Resume:</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="mb-4">
+            <label for="coverLetter" class="block text-sm font-medium text-gray-700">Cover Letter:</label>
+            <input type="file" id="coverLetter" name="cover_letter" accept=".pdf,.doc,.docx" required
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+        </div>
+        <div class="text-right">
+            <button type="submit"
+                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Upload
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.querySelectorAll('.applyButton').forEach(button => {
+        button.addEventListener('click', function() {
+            const modalId = button.dataset.targetModal;
+            const modal = document.getElementById(modalId);
+            const offerId = button.dataset.offerId;
+            const offerIdInput = document.getElementById('offerIdInput');
+            if (modal && offerIdInput) {
+                offerIdInput.value = offerId;
+                console.log(offerId);
+                document.getElementById('uploadModalBackdrop').classList.remove('hidden');
+                modal.classList.remove('hidden');
+            }
+        });
+
+
+
+
+    });
+
+    document.getElementById('closeModalButton').addEventListener('click', function() {
+        const modal = document.getElementById('uploadModal');
+        if (modal) {
+            document.getElementById('uploadModalBackdrop').classList.add('hidden');
+            modal.classList.add('hidden');
+        }
+    });
+</script>
+
+
+
 @endsection
