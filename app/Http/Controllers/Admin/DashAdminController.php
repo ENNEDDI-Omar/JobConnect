@@ -1,29 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Representant;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class OfferController extends Controller
+class DashAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = Auth::user();
-
-        if ($user->companyRepresented) {
-            $company = $user->companyRepresented;
-
-            $offers = $user->offers()->latest()->take(6)->get();
-            
-            return view('Representant.Company.Profile', compact('company', 'offers'));
-        } else {
-            return response()->json(['message' => 'User does not represent any company'], 404);
-        }        
+        return view('Admin.index');
     }
 
     /**

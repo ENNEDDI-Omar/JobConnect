@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             TestimonialTableSeeder::class,
             EducationTableSeeder::class,
             ExperienceTableSeeder::class,
+            OfferSkillTableSeeder::class,
             
         ]);
     }
