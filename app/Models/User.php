@@ -118,7 +118,7 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Application::class);
     }
 
-    public function offers(): HasMany
+    public function offers()
     {
         return $this->hasMany(Offer::class);
     }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +21,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('home',[HomeController::class,'index']);
-Route::get('community',[HomeController::class,'displayCommunity']);
+// Route::get('home',[HomeController::class,'index']);
+// Route::get('community',[HomeController::class,'displayCommunity']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -71,7 +70,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 });
 
 Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
-    Route::get('/', 'HomeController@index')->name('home');
+    // Route::get('/', 'HomeController@index')->name('home');
 
    Route::resource('dashboard', 'DashUserController');
    Route::resource('user', 'UserController');
@@ -81,7 +80,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Cont
 
 });
 
-Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Recruiter', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Recruiter', 'middleware' => ['auth', 'recruiter']], function () {
     
     Route::resource('dashboard','DashRecruiterController');
     Route::resource('offers','OfferController');
