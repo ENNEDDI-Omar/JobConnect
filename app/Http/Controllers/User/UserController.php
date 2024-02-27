@@ -13,12 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user= Auth::user();
-        $skills = $user->skills;
-        $educations = $user->educations;
-        $experiences = $user->experiences;
-        //dd($experiences);
-        return view('user.profile', compact('skills', 'educations', 'experiences','user'));
+        $user = Auth::user();
+
+        $user->load('skills', 'educations', 'experiences');
+
+        return view('user.profile', compact('user'));
 
     }
 
