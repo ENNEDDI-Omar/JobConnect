@@ -108,7 +108,7 @@
     
     <div class="flex flex-row">
         <aside class="bg-white sidebar w-full space-y-8 sm:w-60 dark:bg-gray-900 dark:text-gray-100 " style="width:350px;background-color: #cda2f701">
-            <nav class="space-y-8 text-sm" style="width: 300px;background-color:">
+            <nav class="space-y-8 text-sm" style="width: 300px;">
                 <div class="bg-white space-y-2 flex flex-col justify-center max-w-xs shadow-md rounded-xl sm:px-12 ">
                     <img src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" alt=""
                         class="bg-white w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square">
@@ -159,6 +159,7 @@
         </aside>
     </div>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
+   
 </body>
 
 </html>

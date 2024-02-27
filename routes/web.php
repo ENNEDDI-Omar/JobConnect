@@ -53,7 +53,18 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
- 
+
+ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
+     Route::get('/', 'HomeController@index')->name('home');
+
+
+    Route::resource('user', 'UserController');
+    Route::resource('experiences','ExperienceController');
+    Route::resource('educations','EducationController');
+    Route::resource('offers','OfferController');
+    Route::resource('applications', 'ApplicationController');
+
+});
 
 
 
@@ -69,16 +80,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Co
 
 });
 
-Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
-    // Route::get('/', 'HomeController@index')->name('home');
 
-   Route::resource('dashboard', 'DashUserController');
-   Route::resource('user', 'UserController');
-   Route::resource('experiences','ExperienceController');
-   Route::resource('educations','EducationController');
-   Route::resource('offers','OfferController');
-
-});
 
 Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App\Http\Controllers\Recruiter', 'middleware' => ['auth', 'recruiter']], function () {
     
@@ -90,12 +92,11 @@ Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App
 });
 
 Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
-    Route::resource('dashboard','DashRepresentantController');
+    
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
 
 });
-
 
 Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
 

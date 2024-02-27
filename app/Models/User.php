@@ -133,4 +133,7 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasOne(Company::class, 'recruiter_id');
     }
+
+
+    
 }
