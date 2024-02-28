@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Recruiter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferStoreRequest;
 use App\Http\Requests\OfferUpdateRequest;
+use App\Models\Application;
 use App\Models\Category;
 use App\Models\Offer;
 use App\Models\User;
@@ -44,7 +45,8 @@ class OfferController extends Controller
      */
     public function show(Offer $offer)
     {
-        return view('Recruiter.offer.show', compact('offer'));
+        $offerApplications = $offer->applications;
+        return view('Recruiter.offer.show', compact('offer', 'offerApplications'));
     }
 
     /**
