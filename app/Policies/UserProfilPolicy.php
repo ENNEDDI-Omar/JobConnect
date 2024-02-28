@@ -56,15 +56,15 @@ class UserProfilPolicy
      */
     public function restore(User $user, user $profilUser): bool
     {
-        return true;
+        return $user->id === $profilUser->user_id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, user $model): bool
+    public function forceDelete(User $user, user $profilUser): bool
     {
-        return true;
+        return $user->id === $profilUser->user_id;
     }
 
 
