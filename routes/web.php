@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
- Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth']], function () {
+ Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth', 'user']], function () {
      Route::get('/', 'HomeController@index')->name('home');
 
 
@@ -69,7 +69,7 @@ require __DIR__.'/auth.php';
 
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'App\Http\Controllers\Admin', 'middleware' => ['auth', 'admin']], function () {
     Route::resource('dashboard', 'DashAdminController');
     Route::resource('dash', 'DashController'); 
 
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App
 
 });
 
-Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth', 'representant']], function () {
     
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
