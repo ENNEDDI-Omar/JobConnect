@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,7 +7,6 @@
     <link href="https://cdn.tailwindcss.com" rel="stylesheet" />
     @vite('resources/css/app.css')
 </head>
-
 <body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7">
     <div class="h-screen w-full flex overflow-hidden select-none">
         <nav class="w-24 flex flex-col items-center bg-white dark:bg-gray-800 py-4">
@@ -297,5 +295,12 @@
         </aside>
     </div>
 </body>
+</html> --}}
 
-</html>
+@extends('layouts.Dash')
+
+@section('content')
+
+
+    
+@endsection

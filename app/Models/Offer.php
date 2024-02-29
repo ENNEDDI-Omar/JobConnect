@@ -45,5 +45,12 @@ class Offer extends Model implements HasMedia
         return $this->belongsToMany(Skill::class);
     }
 
+    public function scopeSearch($query, $search)
+    {
+        return $query->where('title', 'like', '%' . $search . '%')
+                     ->orWhere('description', 'like', '%' . $search . '%')
+                     ->with(['user', 'category', 'skills']) ;
+                    
+    }
 
 }
