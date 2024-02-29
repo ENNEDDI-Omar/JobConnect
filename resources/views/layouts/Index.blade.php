@@ -42,7 +42,7 @@
             </a>
             <ul class="bg-white items-stretch hidden space-x-3 lg:flex">
                 <li class="bg-white flex">
-                    <a rel="noopener noreferrer" href="#"
+                    <a rel="noopener noreferrer" href="home"
                         class="bg-white flex items-center px-4 -mb-1 border-b-2 border-transparent text-violet-400 border-violet-400">HOME</a>
                 </li>
                 <li class="bg-white flex">
@@ -54,7 +54,7 @@
                         class="bg-white flex items-center px-4 -mb-1 border-b-2 border-transparent"></a>
                 </li>
                 <li class="bg-white flex">
-                    <a rel="noopener noreferrer" href="#"
+                    <a rel="noopener noreferrer" href="{{route('profil',Auth::id())}}"
                         class="bg-white flex items-center px-4 -mb-1 border-b-2 border-transparent">My Profile</a>
                 </li>
             </ul>
