@@ -16,6 +16,7 @@ class HomeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+
 {
     $user = Auth::user();
 
@@ -32,6 +33,7 @@ class HomeController extends Controller
 }
 
 
+
     /**
      * Show the form for creating a new resource.
      */
@@ -46,6 +48,7 @@ class HomeController extends Controller
         return view('community', compact('users', 'user','recentOffers', 'companies'));
     }
 
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -58,6 +61,15 @@ class HomeController extends Controller
         });
         return response()->json($offers);
     }
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+
     /**
      * Display the specified resource.
      */
