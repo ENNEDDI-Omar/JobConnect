@@ -5,6 +5,7 @@
 use App\Http\Controllers\Admin\DashController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,11 +54,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('profil/{id}', [UserController::class, 'show'])->name('profil')->middleware('auth');
+
+
+// Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
 
  Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth', 'user']], function () {
-     Route::get('/', 'HomeController@index')->name('home');
-
-
+     
     Route::resource('user', 'UserController');
     Route::resource('experiences','ExperienceController');
     Route::resource('educations','EducationController');
