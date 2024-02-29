@@ -56,6 +56,7 @@ require __DIR__.'/auth.php';
 
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('profil/{id}', [UserController::class, 'show'])->name('profil')->middleware('auth');
+Route::get('community', [HomeController::class, 'displayCommunity'])->middleware('auth');
 
 
  Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth', 'user']], function () {
