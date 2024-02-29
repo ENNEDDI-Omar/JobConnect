@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Representant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Offer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class OfferController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('User.index');
+        //
     }
 
     /**
@@ -37,7 +37,8 @@ class OfferController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        return response()->json($user);
     }
 
     /**
@@ -63,15 +64,4 @@ class OfferController extends Controller
     {
         //
     }
-
-    public function search(Request $request)
-{
-    $query = $request->input('query');
-    
-    $offers = Offer::where('title', 'like', '%'.$query.'%')
-                    ->orWhere('description', 'like', '%'.$query.'%')
-                    ->get();
-
-    return view('home', ['offers' => $offers]);
-}
 }

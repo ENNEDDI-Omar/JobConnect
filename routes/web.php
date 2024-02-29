@@ -58,10 +58,7 @@ Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('
 Route::get('profil/{id}', [UserController::class, 'show'])->name('profil')->middleware('auth');
 
 
-// Route::get('home', 'HomeController@index')->name('home')->middleware('auth');
-
  Route::group(['prefix' => 'user', 'as' => 'user.', 'namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth', 'user']], function () {
-     
     Route::resource('user', 'UserController');
     Route::resource('experiences','ExperienceController');
     Route::resource('educations','EducationController');
@@ -90,21 +87,28 @@ Route::group(['prefix' => 'recruiter', 'as' => 'recruiter.', 'namespace' => 'App
     
     Route::resource('dashboard','DashRecruiterController');
     Route::resource('offers','OfferController');
-    Route::resource('company', 'CompanyController');
+   
     
 
 });
 
 Route::group(['prefix' => 'representant', 'as' => 'representant.', 'namespace' => 'App\Http\Controllers\Representant', 'middleware' => ['auth', 'representant']], function () {
-    
+    Route::resource('','DashRepresentantController');
     Route::resource('offers','OfferController');
     Route::resource('company', 'CompanyController');
+    Route::resource('applications', 'ApplicationController');
+    Route::put('/applications/{application}', 'ApplicationController@updateStatus')->name('applications.updateStatus');
+    Route::delete('/applications/{application}', 'ApplicationController@destroy')->name('applications.destroy');
+    Route::get('/applications/{application}', 'ApplicationController@showApplicationUser')->name('applications.show');
+    Route::get('/users/{id}', 'UserController@show')->name('users.show');
+
+    //Route::get('/offers/search', 'OfferController@search')->name('offers.search');
 
 });
 
 Route::get('companiesUpdate', ['Admin\CompanyController@updateUser']); 
 
-
+Route::get('/offers/search', [HomeController::class,'search'])->name('offers.search');
 
 
 

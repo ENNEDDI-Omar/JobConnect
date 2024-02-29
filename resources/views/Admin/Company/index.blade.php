@@ -114,4 +114,74 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('userSelectionModal');
+            var closeModal = document.getElementById('closeModal');
+            var assignUserButton = document.getElementById('assignUserButton');
+            var userSelect = document.getElementById('userSelect');
+            var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+
+            document.querySelectorAll('.assignButton').forEach(item => {
+                item.addEventListener('click', function() {
+                    modal.dataset.companyId = item.closest('tr').dataset.companyId;
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+            });
+
+            assignUserButton.addEventListener('click', function() {
+                var companyId = modal.dataset.companyId;
+                var userId = userSelect.value;
+
+                // Make sure both company ID and user ID are valid
+                if (!companyId || !userId) {
+                    console.error('Company ID or User ID is missing');
+                    return;
+                }
+
+                // Prepare the data to send in the AJAX request
+                var data = {
+                    companyId: companyId,
+                    userId: userId
+                };
+
+                // Send the AJAX request
+                fetch('/companiesUpdate/' + companyId, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        // Assuming the response contains JSON data indicating success/failure
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Handle the response from the server
+                        console.log('Assignment successful:', data);
+                        // You might want to update the UI to reflect the assignment
+                    })
+                    .catch(error => {
+                        console.error('There was a problem with the fetch operation:', error);
+                        // Handle errors or display error messages to the user
+                    });
+
+                // Close the modal
+                modal.classList.add('hidden');
+            });
+        });
+
+
+</script>
 @endsection
