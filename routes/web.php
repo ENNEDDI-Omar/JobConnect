@@ -56,6 +56,8 @@ require __DIR__.'/auth.php';
 
 Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('profil/{id}', [UserController::class, 'show'])->name('profil')->middleware('auth');
+
+Route::get('offer/{id}', [UserController::class, 'edit'])->name('offer')->middleware('auth');
 Route::get('community', [HomeController::class, 'displayCommunity'])->middleware('auth');
 
 

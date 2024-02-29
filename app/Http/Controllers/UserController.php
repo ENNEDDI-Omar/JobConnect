@@ -18,15 +18,7 @@ class UserController extends Controller
   public function edit(User $user)
   {
 
-    if (Gate::allows('update', $user)) {
-      // User is authorized to perform the 'update' action
-      // Your logic here
-      return view('user.profile');
-    } else {
-      // User is not authorized
-      abort(403, 'Unauthorized');
-      
-    }
+    
   }
 
   // public function update(Request $request, User $user)
