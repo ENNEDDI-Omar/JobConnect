@@ -32,15 +32,15 @@ class UserProfilPolicy
      */
     public function create(User $user, User $profilUser): bool
     {
-        return $user->id === $profilUser->user_id;
+        return $user->id === $profilUser->id;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, user $profilUser): bool
+    public function update(User $user, User $profilUser)
     {
-        return $user->id === $profilUser->user_id;
+        return $user->id === $profilUser->id;
     }
 
     /**
@@ -56,15 +56,15 @@ class UserProfilPolicy
      */
     public function restore(User $user, user $profilUser): bool
     {
-        return true;
+        return $user->id === $profilUser->user_id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, user $model): bool
+    public function forceDelete(User $user, user $profilUser): bool
     {
-        return true;
+        return $user->id === $profilUser->user_id;
     }
 
 

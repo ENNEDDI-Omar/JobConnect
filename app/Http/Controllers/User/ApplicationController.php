@@ -20,7 +20,7 @@ class ApplicationController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $applications = $user->applications()->get();
+        $applications = $user->applications->get();
         $recentOffers = Offer::with('skills')->latest()->take(5)->get();
         $companies = Company::latest()->take(5)->get();
         $recruiters = User::whereIn('role_id', [2, 3])->latest()->take(5)->get();

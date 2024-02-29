@@ -74,7 +74,7 @@
                                         class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
                                         <i class="fas fa-money-bill-wave"></i>
                                     </div>
-                                    <h6 class="text-xl mb-1 font-semibold">SALARY</h6>
+                                    <h6 class="text-xl mb-1 font-semibold">SALARY:</h6>
                                     <p class="mb-4 text-blueGray-500">
                                         {{ $offer->salary }}
                                     </p>
@@ -82,22 +82,26 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <footer class="relative bg-blueGray-50 pt-8 pb-6 mt-2">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-wrap items-center md:justify-between justify-center">
-                    <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-                        <div class="text-sm text-blueGray-500 font-semibold py-1">
-                            Made with <a href="https://www.creative-tim.com/product/notus-js"
-                                class="text-blueGray-500 hover:text-gray-800" target="_blank">Notus JS</a> by <a
-                                href="https://www.creative-tim.com" class="text-blueGray-500 hover:text-blueGray-800"
-                                target="_blank"> Creative Tim</a>.
-                        </div>
+                    <div class="mt-8">
+                        <h2 class="text-2xl font-bold mb-4">Candidatures:</h2>
+            
+                        @if ($offerApplications->count() > 0)
+                            <ul>
+                                @foreach ($offerApplications as $application)
+                                    <li class="mb-4">
+                                        <h3 class="text-lg font-semibold">{{ $application->user_id->name }}</h3>
+                                        <p>{{ $application->cover_letter }}</p>
+                                        
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-red-600">Aucune candidature pour le moment!</p>
+                        @endif
                     </div>
                 </div>
             </div>
-        </footer>
+        </div>
+      
     </section>
 @endsection

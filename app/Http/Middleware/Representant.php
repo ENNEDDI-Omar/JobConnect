@@ -20,6 +20,6 @@ class Representant
         {
             return $next($request);
         }
-        return redirect()->route('home')->with('error', 'Access Only for Representant');
+        return redirect()->route('user.home')->with('error', 'Access Only for Representant');
     }
 }

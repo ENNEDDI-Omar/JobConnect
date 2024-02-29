@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Job connect</title>
     <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-    {{--<script src="https://cdn.tailwindcss.com"></script> --}}
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     @vite('resources/css/app.css')
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 </head>
@@ -27,33 +27,46 @@
                 </svg>
             </div>
         </section>
+
+
         <section class="relative py-16 bg-blueGray-200">
             <div class="container mx-auto px-4">
-                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                <div
+                    class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div class="px-6">
                         <div class="flex flex-wrap justify-center">
                             <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                 <div class="relative">
-                                    <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+                                    <img alt="..."
+                                        src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
                                 </div>
                             </div>
 
                             <div class="w-full lg:w-4/12 px-4 lg:order-1">
                                 <div class="flex justify-center py-4 lg:pt-4 pt-8">
                                     <div class="mr-4 p-3 text-center">
-                                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span>
+                                        <span
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span>
                                         <span class="text-sm text-blueGray-400">Applications</span>
                                     </div>
                                     <div class="mr-4 p-3 text-center">
-                                        <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span>
+                                        <span
+                                            class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span>
                                         <span class="text-sm text-blueGray-400">Saved</span>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
+
+
+                        {{-- @dd($user); --}}
+
+
                         <div class="text-center mt-12">
-                            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">{{ $user->name }}</h3>
+                            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                                {{ $user->name }}</h3>
                             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                                 <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>{{ $user->email }}
                             </div>
@@ -61,13 +74,15 @@
                                 <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i> {{ $user->phone }}
                             </div>
                             <div class="mb-2 text-blueGray-600">
-                                <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
+                                <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer
+                                Science
                             </div>
                         </div>
                         <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                             <div class="flex flex-wrap justify-center">
                                 <div class="w-full lg:w-9/12 px-4">
-                                    <p class="mb-4 text-lg leading-relaxed text-blueGray-700">  {{ $user->description }}</p>
+                                    <p class="mb-4 text-lg leading-relaxed text-blueGray-700"> {{ $user->description }}
+                                    </p>
                                     <a href="#pablo" class="font-normal text-pink-500">Show more</a>
                                 </div>
                             </div>
@@ -80,33 +95,53 @@
                                     <div
                                         class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
                                         <h3 class="text-3xl font-semibold">Educations</h3>
-                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam nunc</span>
+                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam
+                                            nunc</span>
                                     </div>
                                 </div>
                                 <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
-                                    <div class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
+                                    <div
+                                        class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
                                         <div class="flex items-center justify-end">
-                                            <button onclick="openModal('addExperienceModal')" class="btn"> <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop" class="w-10 h-10"></lord-icon></button>
+                                            {{-- @can('update', $user) --}}
+                                                <button onclick="openModal('addExperienceModal')" class="btn"> <lord-icon
+                                                        src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop"
+                                                        class="w-10 h-10"></lord-icon></button>
+                                            {{-- @endcan --}}
                                         </div>
                                         @foreach ($user->educations as $education)
-                                            <div class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
+                                            <div
+                                                class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
                                                 <div class="flex items-center justify-between mt-3">
-                                                    <h3 class="text-xl font-semibold tracki">{{ $education->degree }}</h3>
+                                                    <h3 class="text-xl font-semibold tracki">{{ $education->degree }}
+                                                    </h3>
                                                     <div class="flex items-center space-x-2">
-                                                        <form action="{{ route('user.educations.destroy', $education->id) }}"method="post">
+                                                        <form
+                                                            action="{{ route('user.educations.destroy', $education->id) }}"method="post">
                                                             @csrf
                                                             @method('delete')
                                                             <button type="submit">
-                                                                <lord-icon src="https://cdn.lordicon.com/skkahier.json" trigger="" style="width:25px;height:25px"></lord-icon>
+                                                                <lord-icon src="https://cdn.lordicon.com/skkahier.json"
+                                                                    trigger=""
+                                                                    style="width:25px;height:25px"></lord-icon>
                                                             </button>
                                                         </form>
-                                                        <button onclick="openUpdateModal('{{ route('user.educations.edit', $education->id) }}')" class="btn">
-                                                            <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json"  colors="primary:#FFF,secondary:#000000,tertiary:#8B5CF6,quaternary:#8B5CF6"  trigger=""  style="width:25px;height:25px"></lord-icon>
+                                                        <button
+                                                            onclick="openUpdateModal('{{ route('user.educations.edit', $education->id) }}')"
+                                                            class="btn">
+                                                            <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json"
+                                                                colors="primary:#FFF,secondary:#000000,tertiary:#8B5CF6,quaternary:#8B5CF6"
+                                                                trigger=""
+                                                                style="width:25px;height:25px"></lord-icon>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <h3 class="text-xl font-semibold tracki">{{ $education->institution }} </h3>
-                                                <time  class="text-xs tracki uppercase text-gray-400">{{ $education->start_date }}  -  {{ $education->end_date ? $education->end_date : 'Present' }}</time>
+                                                <h3 class="text-xl font-semibold tracki">{{ $education->institution }}
+                                                </h3>
+                                                <time
+                                                    class="text-xs tracki uppercase text-gray-400">{{ $education->start_date }}
+                                                    -
+                                                    {{ $education->end_date ? $education->end_date : 'Present' }}</time>
                                                 <p class="mt-3">{{ $education->description }}</p>
                                             </div>
                                         @endforeach
@@ -117,35 +152,61 @@
                         <div class="container max-w-5xl px-4 py-12 mx-auto">
                             <div class="grid gap-4 mx-4 sm:grid-cols-12">
                                 <div class="col-span-12 sm:col-span-3">
-                                    <div class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
+                                    <div
+                                        class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
                                         <h3 class="text-3xl font-semibold">Experiences</h3>
-                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam nunc</span>
+                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam
+                                            nunc</span>
                                     </div>
                                 </div>
                                 <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
-                                    <div class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
+                                    <div
+                                        class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
                                         <div class="flex items-center justify-end">
-                                            <button onclick="openModal('addExperienceModal')" class="btn"> <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop" class="w-10 h-10"></lord-icon> </button>
+                                            {{-- @can('update', $user) --}}
+                                                <!-- Afficher le bouton de modification ici -->
+                                                <button onclick="openModal('addExperienceModal')" class="btn">
+                                                    <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop"
+                                                        class="w-10 h-10"></lord-icon>
+                                                </button>
+                                            {{-- @endcan --}}
                                         </div>
                                         @foreach ($user->experiences as $experience)
-                                            <div class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
+                                            <div
+                                                class="flex flex-col sm:relative sm:before:absolute sm:before:top-2 sm:before:w-4 sm:before:h-4 sm:before:rounded-full sm:before:left-[-35px] sm:before:z-[1] before:bg-violet-400">
                                                 <div class="flex items-center justify-between mt-3">
-                                                    <h3 class="text-xl font-semibold tracki">{{ $experience->title }} </h3>
+                                                    <h3 class="text-xl font-semibold tracki">{{ $experience->title }}
+                                                    </h3>
                                                     <div class="flex items-center space-x-2">
-                                                        <form action="{{ route('user.experiences.destroy', $experience->id) }}"method="post">
+                                                        <form
+                                                            action="{{ route('user.experiences.destroy', $experience->id) }}"method="post">
                                                             @csrf
                                                             @method('delete')
+
                                                             <button type="submit">
-                                                                <lord-icon src="https://cdn.lordicon.com/skkahier.json"  trigger=""  style="width:25px;height:25px"></lord-icon>
+                                                                <lord-icon src="https://cdn.lordicon.com/skkahier.json"
+                                                                    trigger=""
+                                                                    style="width:25px;height:25px"></lord-icon>
                                                             </button>
+
+
                                                         </form>
-                                                        <button onclick="openUpdateModal('{{ route('user.experiences.edit', $education->id) }}')" class="btn">
-                                                            <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json" colors="primary:#FFF,secondary:#000000,tertiary:#8B5CF6,quaternary:#8B5CF6" trigger="" style="width:25px;height:25px"></lord-icon>
+                                                        <button
+                                                            onclick="openUpdateModal('{{ route('user.experiences.edit', $education->id) }}')"
+                                                            class="btn">
+                                                            <lord-icon src="https://cdn.lordicon.com/ylvuooxd.json"
+                                                                colors="primary:#FFF,secondary:#000000,tertiary:#8B5CF6,quaternary:#8B5CF6"
+                                                                trigger=""
+                                                                style="width:25px;height:25px"></lord-icon>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <h3 class="text-xl font-semibold tracki">{{ $experience->company }}</h3>
-                                                <time class="text-xs tracki uppercase text-gray-400">{{ $experience->start_date }} - {{ $experience->end_date ? $experience->end_date : 'Present' }}</time>
+                                                <h3 class="text-xl font-semibold tracki">{{ $experience->company }}
+                                                </h3>
+                                                <time
+                                                    class="text-xs tracki uppercase text-gray-400">{{ $experience->start_date }}
+                                                    -
+                                                    {{ $experience->end_date ? $experience->end_date : 'Present' }}</time>
                                                 <p class="mt-3">{{ $experience->description }}</p>
                                             </div>
                                         @endforeach
@@ -157,20 +218,28 @@
                         <div class="container max-w-5xl px-4 py-12 mx-auto">
                             <div class="grid gap-4 mx-4 sm:grid-cols-12">
                                 <div class="col-span-12 sm:col-span-3">
-                                    <div class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
+                                    <div
+                                        class="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
                                         <h3 class="text-3xl font-semibold">Skills</h3>
-                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam nunc</span>
+                                        <span class="text-sm font-bold tracki uppercase text-gray-400">Vestibulum diam
+                                            nunc</span>
                                     </div>
                                 </div>
                                 <div class="relative col-span-12 px-4 space-y-6 sm:col-span-9">
-                                    <div class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
+                                    <div
+                                        class="col-span-12 space-y-12 relative px-4 sm:col-span-8 sm:space-y-8 sm:before:absolute sm:before:top-2 sm:before:bottom-0 sm:before:w-0.5 sm:before:-left-3 before:bg-violet-700">
                                         <div class="flex items-center justify-end">
-                                            <button onclick="openModal('addExperienceModal')" class="btn"> <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop" class="w-10 h-10"></lord-icon> </button>
+                                            {{-- @can('update', $user) --}}
+                                                <button onclick="openModal('addExperienceModal')" class="btn">
+                                                    <lord-icon src="https://cdn.lordicon.com/jgnvfzqg.json" trigger="loop"
+                                                        class="w-10 h-10"></lord-icon> </button>
+                                            {{-- @endcan --}}
                                         </div>
                                         @foreach ($user->skills->chunk(4) as $chunk)
                                             <div class="flex flex-wrap mb-4">
                                                 @foreach ($chunk as $skill)
-                                                    <button type="button" class="px-8 py-3 mr-4 mb-4 font-semibold rounded bg-gray-100 text-gray-800">{{$skill->name}}</button>
+                                                    <button type="button"
+                                                        class="px-8 py-3 mr-4 mb-4 font-semibold rounded bg-gray-100 text-gray-800">{{ $skill->name }}</button>
                                                 @endforeach
                                             </div>
                                         @endforeach
@@ -180,6 +249,8 @@
                         </div>
                     </section>
                 </div>
+                <a href="{{ route('home') }}"
+                    class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Retour</a>
             </div>
         </section>
     </main>

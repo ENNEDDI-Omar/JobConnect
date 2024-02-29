@@ -3,15 +3,12 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-full max-w-md">
-            <form action="{{ route('recruiter.offers.update', $offer) }}" method="post" enctype="multipart/form-data"
+            <form action="{{ route('representant.offers.update', $offer) }}" method="post" enctype="multipart/form-data"
                 class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
                 @method('PUT')
-
-                <!-- User ID (hidden input) -->
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
-                <!-- Image de l'offre -->
                 <div class="mb-4">
                     <label for="picture" class="block text-gray-700 text-sm font-bold mb-2">Image de l'offre</label>
                     <input type="file" name="picture" id="picture"
@@ -21,7 +18,6 @@
                     @enderror
                 </div>
 
-                <!-- Titre de l'offre -->
                 <div class="mb-4">
                     <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Titre de l'offre</label>
                     <input type="text" name="title" id="title"
@@ -32,7 +28,7 @@
                     @enderror
                 </div>
 
-                <!-- Description de l'offre -->
+
                 <div class="mb-4">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description de
                         l'offre</label>
@@ -44,7 +40,6 @@
                     @enderror
                 </div>
 
-                <!-- Catégorie de l'offre -->
                 <div class="mb-4">
                     <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Catégorie de l'offre</label>
                     <select name="category_id" id="category"
@@ -58,7 +53,6 @@
                     @enderror
                 </div>
 
-                <!-- Location -->
                 <div class="mb-4">
                     <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
                     <input type="text" name="location" id="location"
@@ -69,7 +63,6 @@
                     @enderror
                 </div>
 
-                <!-- Salary -->
                 <div class="mb-4">
                     <label for="salary" class="block text-gray-700 text-sm font-bold mb-2">Salary</label>
                     <input type="text" name="salary" id="salary"
@@ -80,7 +73,6 @@
                     @enderror
                 </div>
 
-                <!-- Contract Type -->
                 <div class="mb-4">
                     <label for="contract_type" class="block text-gray-700 text-sm font-bold mb-2">Contract Type</label>
                     <input type="text" name="contract_type" id="contract_type"
@@ -91,7 +83,6 @@
                     @enderror
                 </div>
 
-                <!-- Experiences -->
                 <div class="mb-4">
                     <label for="experience" class="block text-gray-700 text-sm font-bold mb-2">Experience</label>
                     <input type="text" name="experience" id="experience"
@@ -102,13 +93,12 @@
                     @enderror
                 </div>
 
-                <!-- Bouton de soumission -->
                 <div class="flex items-center justify-center gap-3">
                     <button type="submit"
                         class="bg-green-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-green-600">
                         Mettre à jour l'offre
                     </button>
-                    <a href="{{ route('recruiter.dashboard.index') }}"
+                    <a href="{{ route('representant.offers.index') }}"
                         class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Annuler</a>
                 </div>
 
