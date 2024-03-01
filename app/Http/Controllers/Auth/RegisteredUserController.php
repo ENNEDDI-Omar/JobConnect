@@ -57,13 +57,13 @@ class RegisteredUserController extends Controller
                 return redirect()->route('admin.dashboard.index');
                 break;
             case 'User':
-                return redirect()->route('user.dashboard.index');
+                return redirect()->route('home');
                 break;
             case 'Recruiter':
                 return redirect()->route('recruiter.dashboard.index');
                 break;
             case 'Representant':
-                return redirect()->route('representant.dashboard.index');
+                return redirect()->route('representant.offers.index');
                 break;
         }
     }

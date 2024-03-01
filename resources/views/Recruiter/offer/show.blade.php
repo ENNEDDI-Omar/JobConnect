@@ -89,7 +89,7 @@
                             <ul>
                                 @foreach ($offerApplications as $application)
                                     <li class="mb-4">
-                                        <h3 class="text-lg font-semibold">{{ $application->user_id->name }}</h3>
+                                        <h3 class="text-lg font-semibold">{{ $application->user->name }}</h3>
                                         <p>{{ $application->cover_letter }}</p>
                                         
                                     </li>

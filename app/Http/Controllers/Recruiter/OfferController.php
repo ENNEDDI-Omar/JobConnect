@@ -54,6 +54,7 @@ class OfferController extends Controller
      */
     public function edit(Offer $offer)
     {
+        $this->authorize('update', $offer);
         $categories = Category::all();
         return view('Recruiter.offer.edit', compact('offer', 'categories'));
     }

@@ -244,31 +244,135 @@
     </div>
 
     <script>
-        document.querySelectorAll('.applyButton').forEach(button => {
-            button.addEventListener('click', function() {
+        document.addEventListener('click', function (event) {
+            const button = event.target.closest('.applyButton');
+            if (button) {
                 const modalId = button.dataset.targetModal;
                 const modal = document.getElementById(modalId);
                 const offerId = button.dataset.offerId;
-                const offerIdInput = document.getElementById('offerIdInput');
+                const offerIdInput = modal.querySelector('#offerIdInput');
                 if (modal && offerIdInput) {
                     offerIdInput.value = offerId;
-                    console.log(offerId);
                     document.getElementById('uploadModalBackdrop').classList.remove('hidden');
                     modal.classList.remove('hidden');
                 }
-            });
-
-
-
-
-        });
-
-        document.getElementById('closeModalButton').addEventListener('click', function() {
-            const modal = document.getElementById('uploadModal');
-            if (modal) {
-                document.getElementById('uploadModalBackdrop').classList.add('hidden');
-                modal.classList.add('hidden');
             }
         });
+        document.addEventListener('click', function (event) {
+            const closeButton = event.target.closest('#closeModalButton');
+            if (closeButton) {
+                const modal = closeButton.closest('#uploadModal');
+                closeModal(modal);
+            }
+        });
+        function closeModal(modal) {
+            modal.classList.add('hidden');
+            document.getElementById('uploadModalBackdrop').classList.add('hidden');
+        }
+        function closeModal(modal) {
+            modal.classList.add('hidden');
+            document.getElementById('uploadModalBackdrop').classList.add('hidden');
+        }
+        document.getElementById('searchForm').addEventListener('input', function (event) {
+            event.preventDefault();
+            const query = document.getElementById('queryInput').value;
+            fetch(`/offers/search?query=${query}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    displaySearchResults(data);
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('There was a problem with your fetch operation:', error);
+                });
+        });
+        function displaySearchResults(offers) {
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = ''; 
+        offers.forEach(offer => {
+            const article = document.createElement('article');
+            article.classList.add('space-y-8', 'bg-white');
+            const offerTitle = document.createElement('a');
+            offerTitle.href = `/user/offers/${offer.id}`;
+            offerTitle.classList.add('text-4xl', 'font-bold', 'md:tracking', 'md:text-3xl');
+            offerTitle.textContent = offer.title;
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('flex', 'justify-between');
+            titleDiv.appendChild(offerTitle);
+            if (offer.category && offer.category.name) { // Check if category is defined and has a name
+                const categorySpan = document.createElement('span');
+                categorySpan.classList.add('px-3', 'py-1', 'rounded-sm', 'hover:underline', 'text-violet-600');
+                categorySpan.textContent = `#${offer.category.name}`;
+                titleDiv.appendChild(categorySpan);
+            }
+            const userImg = document.createElement('img');
+            userImg.src = 'https://source.unsplash.com/75x75/?portrait';
+            userImg.alt = '';
+            userImg.classList.add('w-4', 'h-4', 'border', 'rounded-full', 'bg-gray-500', 'border-gray-700');
+            const userNameDate = document.createElement('p');
+            userNameDate.classList.add('text-sm');
+            userNameDate.textContent = `${offer.user.name} • ${offer.created_at}`;
+            const userInfoDiv = document.createElement('div');
+            userInfoDiv.classList.add('flex', 'items-center', 'md:space-x-2');
+            userInfoDiv.appendChild(userImg);
+            userInfoDiv.appendChild(userNameDate);
+            const userInfoContainer = document.createElement('div');
+            userInfoContainer.classList.add('flex', 'flex-col', 'items-start', 'justify-between', 'w-full', 'md:flex-row', 'md:items-center', 'text-gray-400');
+            userInfoContainer.appendChild(userInfoDiv);
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.classList.add('dark:text-gray-100');
+            descriptionDiv.textContent = offer.description;
+            const skillsDiv = document.createElement('div');
+            skillsDiv.classList.add('flex', 'flex-wrap', 'py-6', 'gap-2', 'border-t', 'border-dashed', 'border-gray-400');
+            offer.skills.forEach(skill => {
+                const skillSpan = document.createElement('span');
+                skillSpan.classList.add('px-3', 'py-1', 'rounded-sm', 'hover:underline', 'bg-violet-400', 'text-gray-900');
+                skillSpan.textContent = skill.name;
+                skillsDiv.appendChild(skillSpan);
+            });
+            const otherInfosDiv = document.createElement('div');
+            otherInfosDiv.classList.add('space-y-2');
+            const otherInfosHeader = document.createElement('h4');
+            otherInfosHeader.classList.add('text-lg', 'font-semibold');
+            otherInfosHeader.textContent = 'Other Infos';
+            const otherInfosList = document.createElement('ul');
+            otherInfosList.classList.add('ml-4', 'space-y-1', 'list-disc');
+            const otherInfoItems = [
+                `Experience: ${offer.experience}`,
+                `Salary: ${offer.salary}`,
+                `Contract type: ${offer.contract_type}`,
+                `Location: ${offer.location}`
+            ];
+            otherInfoItems.forEach(info => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<span class="hover:underline">${info}</span>`;
+                otherInfosList.appendChild(listItem);
+            });
+            otherInfosDiv.appendChild(otherInfosHeader);
+            otherInfosDiv.appendChild(otherInfosList);
+            const applyButton = document.createElement('button');
+            applyButton.classList.add('applyButton', 'bg-blue-500', 'hover:bg-blue-700', 'text-white', 'font-bold', 'py-2', 'px-4', 'rounded');
+            applyButton.dataset.targetModal = 'uploadModal';
+            applyButton.dataset.offerId = offer.id;
+            applyButton.textContent = 'Apply';
+            const applyButtonContainer = document.createElement('div');
+            applyButtonContainer.style.marginBottom = '50px';
+            applyButtonContainer.classList.add('bg-white');
+            applyButtonContainer.appendChild(applyButton);
+            article.appendChild(titleDiv);
+            article.appendChild(userInfoContainer);
+            article.appendChild(descriptionDiv);
+            article.appendChild(skillsDiv);
+            article.appendChild(otherInfosDiv);
+            article.appendChild(applyButtonContainer);
+            resultsContainer.appendChild(article);
+        });
+    }
     </script>
 @endsection
